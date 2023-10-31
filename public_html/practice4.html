@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <h1>EECS 348 Lab Seven Practice Four</h1>
+</head>
+
+<body>
+    <form method="post">
+        Size of the multiplication table: <input type="number" name="number"><br>
+        <input type="submit">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $number = $_POST["number"];
+
+        if (is_numeric($number)) {
+            echo "<h2>Multiplication Table for $number</h2>";
+            echo "<table border='1'>";
+            
+            // Print column indexes
+            echo "<tr><th></th>";
+            for ($col = 1; $col <= $number; $col++) {
+                echo "<th>$col</th>";
+            }
+            echo "</tr>";
+
+            // Print table rows with row indexes
+            for ($row = 1; $row <= $number; $row++) {
+                echo "<tr><th>$row</th>";
+                for ($col = 1; $col <= $number; $col++) {
+                    echo "<td>" . ($row * $col) . "</td>";
+                }
+                echo "</tr>";
+            }
+
+            echo "</table>";
+        } else {
+            echo "<p>Please enter a valid number.</p>";
+        }
+    }
+    ?>
+</body>
+
+</html>
